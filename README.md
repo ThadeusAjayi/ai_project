@@ -12,5 +12,5 @@ cp .env.example .env  #Creates .env file with required keys
 Run 
 ```sh
 npm run watch #compiles ts to js in lib folder
-npm start #tests the setup
+npm start #runs the initializing functions
 ```
