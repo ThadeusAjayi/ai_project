@@ -1,3 +1,4 @@
+import process = require("process");
 declare var process: {
   env: {
     NODE_ENV: string;

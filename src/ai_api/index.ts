@@ -1,5 +1,7 @@
 import * as dotenv from "dotenv";
 import OpenAI from "openai";
+import { Ollama } from "ollama";
+
 dotenv.config();
 
 export async function initializeDeepseek() {
@@ -28,4 +30,17 @@ export async function initializeOpenAi() {
   });
 
   completion.then((result) => console.log(result.choices[0].message));
+}
+
+export async function initializeOllamaCustomClient() {
+  const ollama = new Ollama({ host: "http://127.0.0.1:11434" });
+  const response = await ollama.chat({
+    model: "deepseek-r1:1.5b",
+    messages: [{ role: "user", content: "Why is the sky blue?" }],
+    stream: true,
+  });
+
+  for await (const part of response) {
+    process.stdout.write(part.message.content);
+  }
 }
